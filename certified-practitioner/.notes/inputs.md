@@ -23,3 +23,6 @@ Text extraction: pypdf fails here (cryptography/cffi error); `python3 -m pip ins
 
 ## Uploaded 2026-10-06 by Javeline: network pattern relationship cards (14 JPEGs, ~140–285 KB each)
 - In uploads/hearth/: ce7e7fb0 (Battle Buddies / Disconnected Pairs), 89233d24 (Celebrating Diversity / Heterogeneous Network), bc79681a (Birds of a Feather / Homogeneous Coalitions), ea1ee530 (Yes Chef! / Strict Hierarchy), 631275b3 (Here Be Dragons / Gatekeeper), cc002166 (Loneliest Number / Disconnected Individuals), 74b52727 (The Inner Circle / Periphery), 598234cf (Bridging the Gaps / Boundary Spanner), 5895ac65 (Enforced Equality / Cohesive Clique), 860581c4 (Flat Hierarchy / Hub & Spoke), 24c90175 (Network Patterns header), 7154309d ("The Pattern we… say / actually / should use"), de663333 (Social Network Webbing, "Relationships matter"), f279bf1d (webbing steps 1–7). File-to-card mapping assumes upload order = display order. Hand-drawn; no licence line. Used in 05a-network-pattern-cards.md.
+
+## Uploaded 2026-10-08 by Javeline: PSLP v2.3
+- `PSLP white paper v2.3.pdf` (copied from the upload `pslp 2.3.pdf`): 14 pages, ~238 KB, text extracts cleanly with pymupdf. Header and change log say v2.3 (2026-10-08), "aligned to the Certified Practitioner response (v2, Oct 7)". Change log tail duplicates a sentence. Checked in 10-pslp-2.3-check.md.

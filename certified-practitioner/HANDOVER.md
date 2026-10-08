@@ -28,7 +28,7 @@ The job so far has been to turn Javeline's response to NAOMS into a consistent d
 
 ## 3. Standing rules (from Javeline, 2026-09-30). Follow them in every step.
 
-1. **One source of truth.** Every decision, number, price, threshold and duration lives in ONE table: `02-decisions.md` (and its condensed copy at the top of 08). Everything else refers to rows (D1…D206) and never repeats a value.
+1. **One source of truth.** Every decision, number, price, threshold and duration lives in ONE table: `02-decisions.md` (and its condensed copy at the top of 08). Everything else refers to rows (D1…D207) and never repeats a value.
 2. **Label every sentence that is not settled.** The labels are:
    - DECIDED (with who and when);
    - PROPOSAL (with who proposed it);
@@ -38,7 +38,7 @@ The job so far has been to turn Javeline's response to NAOMS into a consistent d
 4. **No unfinished sections.** A heading either has content or is removed.
 5. **Conflicting statements:** show both and ask. Never pick one quietly.
 6. **Keep Javeline's voice and ideas.** The job is consistency, completeness and honesty, not rewriting.
-7. **Save every result as markdown in the folder, named by step:** 01-…, 02-…, and so on. Next free number: **10**.
+7. **Save every result as markdown in the folder, named by step:** 01-…, 02-…, and so on. Next free number: **12**.
 
 Javeline sends steps one message at a time.
 
@@ -67,7 +67,7 @@ Javeline sends steps one message at a time.
 
 | Prefix | Meaning | Lives in |
 | --- | --- | --- |
-| D1–D206 | Decisions and numbers (gaps are folded or replaced rows) | 02-decisions.md |
+| D1–D207 | Decisions and numbers (gaps are folded or replaced rows) | 02-decisions.md |
 | C1–C19 | Conflicts within the decisions table, all settled | 02-decisions.md |
 | K1–K22 | Consistency conflicts in the response | 03-conflicts.md |
 | F1–F26 | Fixes from the power-and-money check | 04-power-and-money.md |
@@ -103,10 +103,13 @@ Then, as needed, the step files and sources below.
 | `07-scope.md` | Step 7: scope and pilot minimum (P), adopted |
 | `08-response-v2.md` | Steps 8–9: version 2 of the response, ready to send |
 | `09-game-design-doc.pdf` | Visual game-design edition of 08 (source in `gdd-source/`) |
+| `10-pslp-2.3-check.md` | Step 10: PSLP v2.3 checked against the decisions (P inconsistencies, E edits, M missing) |
+| `11-pslp-v2.4.md` | Step 11: PSLP white paper v2.4, all step 10 fixes plus how pilot 1 seeds the wiki (D207) |
 | `Certified Practitioner — response to Kitestring draft 3.md` | **Original input:** Javeline's response, 29 Sep 2026. Line numbers cited in 01–05 refer to it |
 | `NAOMS-Kitestring-PSLP-draft3-2026-09-25.pdf` | **Input:** NAOMS's design draft 3 (mostly images). Not in the GitHub repository |
 | `NAOMS-Certified-Practitioner-feedback-2026-09-29.pdf` | **Input:** Mujo's feedback on the response. Not in the GitHub repository |
-| `PSLP white paper v2.2 (2026-09-29).pdf` | **Input:** latest PSLP white paper (header still says 2.0) |
+| `PSLP white paper v2.3.pdf` | **Input:** latest PSLP white paper (2026-10-08) |
+| `PSLP white paper v2.2 (2026-09-29).pdf` | **Input:** previous PSLP white paper (header still says 2.0) |
 | `certified practitioner 2.1.pdf`, `Proof of Social Learning White Paper (1).pdf` | **Input:** earlier white papers |
 | `sources/` | Summaries of outside sources Javeline gave (Happy Money Story, LS Commons note) |
 | `uploads/hearth/` | Javeline's uploaded images. Each file is named by its ID, without an extension (see `.notes/inputs.md` for which is which): the network pattern cards, the LS principles, Ostrom's principles |
