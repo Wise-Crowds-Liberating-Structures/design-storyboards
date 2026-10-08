@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Certified Practitioner · Game Design Document</title>
+<link rel="stylesheet" href="fonts-local.css">
+<style>
+:root{
+  --frame:#0b7354;      /* card frame green */
+  --dg:#0b7354;         /* dark green: situational assessment */
+  --lg:#2fd39a;         /* light green: design and deliver */
+  --pu:#a020f0;         /* purple: maps and traces */
+  --lp:#f9a8cf;         /* light pink: question compass */
+  --pk:#f0335f;         /* pink: question strings */
+  --bl:#12a8dc;         /* blue: roles */
+  --bd:#2457d6;         /* blue: groups, steps and time */
+  --ink:#121614;
+  --night:#0c1512;
+  --night2:#13221d;
+  --paper:#fffdf6;
+  --mute:#5d6b66;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--night);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:Inter,'Liberation Sans',sans-serif;color:var(--ink);font-size:10pt;line-height:1.45}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;background:var(--night);padding:14mm 13mm 16mm}
+.page:last-child{page-break-after:auto}
+.card{background:var(--paper);border:3.2mm solid var(--frame);border-radius:7mm;padding:7mm 8mm;position:relative}
+.full{height:100%;display:flex;flex-direction:column}
+h1,h2,h3{font-family:'Permanent Marker',cursive;font-weight:400;letter-spacing:.3px}
+h2{font-size:27pt;color:var(--pu);line-height:1.05;margin-bottom:1.5mm}
+h3{font-size:14pt;color:var(--pu);margin:0 0 1.5mm}
+.kicker{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:8pt;letter-spacing:2.5px;text-transform:uppercase;color:var(--frame)}
+.lede{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:11.5pt;line-height:1.4;color:#24302c;margin:1mm 0 4mm}
+p{margin:0 0 2.2mm}
+.mono,.ref{font-family:'JetBrains Mono',monospace;font-size:7pt;color:var(--mute)}
+.ref{white-space:nowrap}
+.foot{position:absolute;left:13mm;right:13mm;bottom:6mm;display:flex;justify-content:space-between;font-family:'Space Grotesk',sans-serif;font-size:7.5pt;color:#7fa596;letter-spacing:1px;text-transform:uppercase}
+.foot b{color:#c9f2e2}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3.5mm}
+.tile{border-radius:4mm;padding:3.5mm 4mm;background:#fff;border:1.2mm solid var(--c,var(--frame))}
+.tile h4{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10.5pt;color:var(--c,var(--frame));margin-bottom:1mm}
+.tile p{font-size:8.8pt;margin:0}
+.chip{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:6.6pt;letter-spacing:1px;text-transform:uppercase;padding:.5mm 1.8mm;border-radius:10mm;vertical-align:middle;margin-left:1mm}
+.dec{background:#d9f6ea;color:#0b5c43}
+.pro{background:#fde3ee;color:#b0124a}
+.opn{background:#e4ecff;color:#1b47b8}
+.asm{background:#f1e2ff;color:#7413b8}
+table{width:100%;border-collapse:collapse;font-size:8.6pt}
+th{font-family:'Space Grotesk',sans-serif;font-weight:700;text-align:left;font-size:7.6pt;letter-spacing:1px;text-transform:uppercase;color:var(--frame);border-bottom:.6mm solid var(--frame);padding:1.4mm 1.5mm}
+td{padding:1.5mm 1.5mm;border-bottom:.25mm solid #dfe7e3;vertical-align:top}
+.swatch{display:inline-block;width:4mm;height:4mm;border-radius:1mm;vertical-align:-0.8mm;margin-right:1.5mm}
+.big{font-family:'Permanent Marker',cursive;font-size:20pt;line-height:1}
+ul.tight{padding-left:4mm;margin:0}
+ul.tight li{margin:0 0 1mm;font-size:8.8pt}
+.note{font-size:7.8pt;color:var(--mute)}
+/* cover */
+.cover{background:radial-gradient(circle at 80% 15%,#1d3a30 0,var(--night) 55%)}
+.cover .title{font-family:'Permanent Marker',cursive;font-size:52pt;line-height:.95;color:var(--pu)}
+.cover .sub{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13pt;letter-spacing:4px;text-transform:uppercase;color:var(--frame);margin-top:4mm}
+.dots span{display:inline-block;width:9mm;height:9mm;border-radius:50%;margin-right:2.5mm}
+.cardfan{position:absolute;right:-4mm;bottom:44mm;width:118mm;height:110mm}
+.cardfan img{position:absolute;width:52mm;border-radius:5mm;box-shadow:0 3mm 8mm rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="page cover">
+  <div class="card full" style="padding:12mm 12mm">
+    <div class="kicker">Game Design Document · version 2 · 7 October 2026</div>
+    <div style="margin-top:16mm" class="title">Certified<br>Practitioner</div>
+    <div class="sub">The omni-win game of practice</div>
+    <p class="lede" style="max-width:110mm;margin-top:8mm;font-size:13pt">We are building new senses for groups, so that what they learn to see, they can learn to value.</p>
+    <div class="dots" style="margin-top:4mm">
+      <span style="background:var(--dg)"></span><span style="background:var(--lg)"></span><span style="background:var(--pu)"></span><span style="background:var(--lp)"></span><span style="background:var(--pk)"></span><span style="background:var(--bl)"></span><span style="background:var(--bd)"></span>
+    </div>
+    <div style="margin-top:auto;max-width:150mm">
+      <p class="note" style="font-size:8.5pt;color:#33433d"><b>@Javeline</b> · first community: Liberating Structures · built as a NAOMS app with Mujo</p>
+      <p class="note">A visual edition of <i>Certified Practitioner, response to Kitestring draft 3, version 2</i>. Where this edition and that document differ, the document wins. D-numbers point to its Decisions and numbers table.</p>
+    </div>
+    <div class="cardfan">
+      <img src="598234cf.jpg" style="left:0;top:22mm;transform:rotate(-12deg)">
+      <img src="89233d24.jpg" style="left:30mm;top:6mm;transform:rotate(-2deg);z-index:2">
+      <img src="bc79681a.jpg" style="left:60mm;top:20mm;transform:rotate(10deg);z-index:3">
+    </div>
+  </div>
+</section>
+
+<!-- 2 HIGH CONCEPT -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">01 · High concept</div>
+    <h2>Practice made visible, trusted and self-funding</h2>
+    <p class="lede">Certified Practitioner is a community-owned certification program. It makes practice visible, sells what that visibility is worth, and pays the people who make it valuable. <span class="ref">D1</span></p>
+    <div class="grid2" style="margin-bottom:4mm">
+      <div>
+        <h3>Why play</h3>
+        <p>The tools we think with become part of us. Liberating Structures take that collective: a group thinks about how it wants to think, together. The arc runs from mechanical to mystical. First you learn the game rules, then the games become how you see and move through the world.</p>
+        <p>The cornerstone of new tools is relationships made legible. What gets perceived can be accounted for. New senses make a new accounting possible.</p>
+      </div>
+      <div>
+        <h3>The world</h3>
+        <p>We are a large organization that is not organized. Certified Practitioner lets us federate into a <b>trench-coat totem pole</b>: coherent enough to pass as a large organization to the enterprises that buy learning, while staying a community underneath.</p>
+        <p>The stars are the <b>user groups</b>, the people already using these tools wherever practice happens. <span class="ref">D5</span></p>
+      </div>
+    </div>
+    <h3>Design pillars</h3>
+    <div class="grid2">
+      <div class="tile" style="--c:var(--pu)"><h4>Paint on the road, not crash barriers</h4><p>Every claim is admitted and shown with how well it is evidenced. People judge. Money is the one exception: it moves only by fixed rules and signer thresholds. <span class="ref">D161</span></p></div>
+      <div class="tile" style="--c:var(--dg)"><h4>My deck first</h4><p>Every practitioner's home deck comes first, everywhere, whatever the votes say. A platform right for everyone, not a privilege. <span class="ref">D10, D175</span></p></div>
+      <div class="tile" style="--c:var(--pk)"><h4>Omni-win</h4><p>The common pool is a player too: its needs are counted alongside everyone else's. Nobody takes a cut outside the flow. <span class="ref">D79, D85</span></p></div>
+      <div class="tile" style="--c:var(--bl)"><h4>You can found it, not own it</h4><p>Stewards are elected and removable, money needs several signers, and the commons sets the rules. <span class="ref">D159, D166, D200</span></p></div>
+    </div>
+    <div style="margin-top:auto" class="grid3">
+      <div class="tile" style="--c:var(--lg)"><h4>Players win</h4><p>A portable, trusted record of practice, and a route to a livelihood through serving the community.</p></div>
+      <div class="tile" style="--c:var(--bd)"><h4>Groups win</h4><p>Legibility: where practice is active, what works, who is ready, with no lists to maintain by hand.</p></div>
+      <div class="tile" style="--c:var(--pu)"><h4>The commons wins</h4><p>A funded pool, a living wiki and courses that write themselves.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>02</span></div>
+</section>
+
+<!-- 3 CORE LOOP -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">02 · Core loop</div>
+    <h2>Play a session. Leave a trace. Level up.</h2>
+    <p class="lede">Every step is one of the deck's cards. Nobody designed a form. No one has to type a record. <span class="ref">D124</span></p>
+    <svg viewBox="0 0 180 128" style="width:100%;height:auto;margin:1mm 0 3mm" font-family="Space Grotesk" font-weight="700">
+      <defs><marker id="ar" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#0b7354"/></marker></defs>
+      <circle cx="90" cy="64" r="44" fill="none" stroke="#0b7354" stroke-width="1.2" stroke-dasharray="3 2.5"/>
+      <g text-anchor="middle" font-size="5">
+        <g transform="translate(90,14)"><rect x="-24" y="-7" width="48" height="14" rx="4" fill="#0b7354"/><text y="1.8" fill="#fff">1 · PLAY</text></g>
+        <g transform="translate(140,38)"><rect x="-26" y="-7" width="52" height="14" rx="4" fill="#2fd39a"/><text y="1.8" fill="#0c1512">2 · PICK CARDS</text></g>
+        <g transform="translate(140,90)"><rect x="-26" y="-7" width="52" height="14" rx="4" fill="#a020f0"/><text y="1.8" fill="#fff">3 · TRACES + RoTI</text></g>
+        <g transform="translate(90,114)"><rect x="-30" y="-7" width="60" height="14" rx="4" fill="#f0335f"/><text y="1.8" fill="#fff">4 · POSITIVE GOSSIP</text></g>
+        <g transform="translate(40,90)"><rect x="-26" y="-7" width="52" height="14" rx="4" fill="#12a8dc"/><text y="1.8" fill="#fff">5 · DATA WASH</text></g>
+        <g transform="translate(40,38)"><rect x="-26" y="-7" width="52" height="14" rx="4" fill="#2457d6"/><text y="1.8" fill="#fff">6 · LEVEL UP</text></g>
+      </g>
+      <g text-anchor="middle">
+        <text x="90" y="58" font-family="Permanent Marker" font-weight="400" font-size="9" fill="#a020f0">the record</text>
+        <text x="90" y="68" font-size="4" fill="#5d6b66">co-signed · computed · yours</text>
+        <text x="90" y="74" font-size="4" fill="#5d6b66">leave with it any time</text>
+      </g>
+    </svg>
+    <div class="grid3">
+      <div class="tile" style="--c:var(--dg)"><h4>1 · Play</h4><p>A session runs on the host's deck; everyone sees the host's cards first. <span class="ref">D14</span></p></div>
+      <div class="tile" style="--c:var(--lg)"><h4>2 · Pick cards</h4><p>Pick the cards played from a list. Name the designer, deliverer and players. Camera and voice return if this proves too slow. <span class="ref">D124</span></p></div>
+      <div class="tile" style="--c:var(--pu)"><h4>3 · Traces + RoTI</h4><p>Photos of the traces, then the Return on Time Invested. Depth grows with the giver's phase later. <span class="ref">D53, D117</span></p></div>
+      <div class="tile" style="--c:var(--pk)"><h4>4 · Positive Gossip</h4><p>The co-signature. A session is co-signed when enough distinct, verified players send it. Guests show on the record but don't count. <span class="ref">D30, D184, D119</span></p></div>
+      <div class="tile" style="--c:var(--bl)"><h4>5 · Data Wash</h4><p>Per entry: publish under your name, anonymized, or withhold. From the very first data in. <span class="ref">D51, D205</span></p></div>
+      <div class="tile" style="--c:var(--bd)"><h4>6 · Level up</h4><p>Your ecocycle stage per pattern and your phase are computed from the record. Nobody fills them in. <span class="ref">D28, D30</span></p></div>
+    </div>
+    <p class="note" style="margin-top:auto">Records stay open for late signatures (D120). Anyone can correct, withdraw or take themselves out of a record. Download the whole session as a package for your own AI agents, for example as an MCP server (D65).</p>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>03</span></div>
+</section>
+
+<!-- 4 PROGRESSION -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">03 · Progression</div>
+    <h2>The ladder: from Cynic to Maestro</h2>
+    <p class="lede">One shared rubric, so a 16+ in Utrecht means the same as a 16+ in Rotterdam. Your phase counts the patterns you have in use. <span class="ref">D22, D23</span></p>
+    <svg viewBox="0 0 180 62" style="width:100%;height:auto;margin-bottom:3mm" font-family="Space Grotesk" font-weight="700">
+      <g>
+        <rect x="2" y="44" width="40" height="16" rx="3" fill="#9aa8a3"/><text x="22" y="51" text-anchor="middle" font-size="4" fill="#fff">DESPAIRING</text><text x="22" y="56" text-anchor="middle" font-size="4" fill="#fff">CYNIC</text><text x="22" y="40" text-anchor="middle" font-size="5" fill="#5d6b66">below 8</text>
+        <rect x="46" y="32" width="40" height="28" rx="3" fill="#2fd39a"/><text x="66" y="45" text-anchor="middle" font-size="4" fill="#0c1512">CAUTIOUS</text><text x="66" y="50" text-anchor="middle" font-size="4" fill="#0c1512">OPTIMIST</text><text x="66" y="22" text-anchor="middle" font-size="5" fill="#0b7354">8+</text><text x="66" y="28" text-anchor="middle" font-size="3.8" fill="#0b7354">certificate unlocks</text>
+        <rect x="90" y="20" width="42" height="40" rx="3" fill="#12a8dc"/><text x="111" y="39" text-anchor="middle" font-size="4" fill="#fff">RAPTUROUS</text><text x="111" y="44" text-anchor="middle" font-size="4" fill="#fff">SUPER-USER</text><text x="111" y="16" text-anchor="middle" font-size="5" fill="#12a8dc">16+</text>
+        <rect x="136" y="6" width="42" height="54" rx="3" fill="#a020f0"/><text x="157" y="28" text-anchor="middle" font-size="4" fill="#fff">MAESTRO</text><text x="157" y="33" text-anchor="middle" font-size="4" fill="#fff">MINIMALIST</text><text x="157" y="40" text-anchor="middle" font-size="3.4" fill="#f1e2ff">32+ · then simply</text><text x="157" y="44" text-anchor="middle" font-size="3.4" fill="#f1e2ff">a maestro</text>
+      </g>
+    </svg>
+    <div class="grid2">
+      <div>
+        <h3>Each pattern has its own ecocycle</h3>
+        <table>
+          <tr><th>Stage</th><th>Means</th></tr>
+          <tr><td><span class="swatch" style="background:#cfd8d4"></span>Gestation</td><td>Never seen it</td></tr>
+          <tr><td><span class="swatch" style="background:var(--lg)"></span>Birth</td><td>Led through it</td></tr>
+          <tr><td><span class="swatch" style="background:var(--bl)"></span>Maturity</td><td>Hosted others in it</td></tr>
+          <tr><td><span class="swatch" style="background:var(--pu)"></span>Creative Destruction</td><td>Enabled someone else to host it</td></tr>
+        </table>
+        <p class="note" style="margin-top:1.5mm">"Patterns in use" counts Maturity and beyond. People reached, diversity of settings and design goals achieved show as plain counts. <span class="ref">D25, D29</span></p>
+        <h3 style="margin-top:3mm">No ceiling on the deck</h3>
+        <p style="font-size:8.8pt">Every pattern card counts. A new card counts once it has been accepted, revised and used by enough different hosts. <span class="ref">D26, D27</span> <span class="chip pro">hosts from 2+ groups: proposal</span></p>
+      </div>
+      <div>
+        <h3>Evidence levels, side by side</h3>
+        <p style="font-size:8.8pt">Your phase is computed at each evidence level and shown side by side. The certificate uses the co-signed phase. <span class="ref">D30, D161</span></p>
+        <table>
+          <tr><th>Level</th><th>Counts toward</th></tr>
+          <tr><td>Personal claim, imported history</td><td>Phase "including claims"</td></tr>
+          <tr><td>Attestation, Scribe evidence</td><td>Shown on the record</td></tr>
+          <tr><td><b>Peer co-signature</b></td><td><b>Co-signed phase → certificate</b></td></tr>
+          <tr><td>Content, artifacts, dates</td><td>Raises confidence</td></tr>
+          <tr><td>Witness network shape</td><td>After the trust wire</td></tr>
+          <tr><td>Community seal</td><td>Optional endorsement</td></tr>
+        </table>
+        <p class="note" style="margin-top:1.5mm">Imported past sessions count as claims at their evidence level. They never reach a certificate or a seal without co-signatures. <span class="ref">D20, D34</span></p>
+      </div>
+    </div>
+    <div class="tile" style="--c:var(--pk);margin-top:auto">
+      <h4>The reward: a certificate of practice</h4>
+      <p>Issued from the computed record, signed by the relevant user groups (and the LS Commons, presumed). It states the record and its evidence profile, never competence, and shows how many distinct people witnessed it. Unlocks at Cautious Optimist. One fee everywhere: €100 during the hatch, changed only by the commons. Certifying a record is always free. <span class="ref">D160, D162, D185, D201, D69, D32</span></p>
+    </div>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>04</span></div>
+</section>
+
+<!-- 5 THE DECK -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">04 · The deck is the data model</div>
+    <h2>Seven colours, five design elements</h2>
+    <p class="lede">If the app records each card's category and the setting of its knobs, every session record becomes the design made explicit. <span class="ref">D107</span></p>
+    <table style="margin-bottom:4mm">
+      <tr><th>Colour</th><th>Category</th><th>What it encodes</th><th>Design element</th></tr>
+      <tr><td><span class="swatch" style="background:var(--dg)"></span>Dark green</td><td>Meta-games: situational assessment</td><td>Seeing and sensing the group and its situation</td><td>Purpose and context</td></tr>
+      <tr><td><span class="swatch" style="background:var(--lg)"></span>Light green</td><td>Meta-games: design and deliver</td><td>Designing the intervention and delivering it</td><td>Purpose and context</td></tr>
+      <tr><td><span class="swatch" style="background:var(--pu)"></span>Purple</td><td>Artifacts: maps and traces</td><td>Maps orient a conversation; traces record where the group was</td><td>Materials and space</td></tr>
+      <tr><td><span class="swatch" style="background:var(--lp)"></span>Light pink</td><td>Question compass</td><td>Questions that point a conversation in a direction</td><td>Invitation</td></tr>
+      <tr><td><span class="swatch" style="background:var(--pk)"></span>Pink</td><td>Question strings</td><td>Sequences of questions</td><td>Invitation</td></tr>
+      <tr><td><span class="swatch" style="background:var(--bl)"></span>Blue (roles)</td><td>Interaction: roles</td><td>Scribe, Time Lord, Vibe Canary</td><td>Distributing participation</td></tr>
+      <tr><td><span class="swatch" style="background:var(--bd)"></span>Blue (groups, steps, time)</td><td>Interaction: configuration</td><td>Group size and how time is spent</td><td>Groups; steps and time</td></tr>
+    </table>
+    <div class="grid2">
+      <div>
+        <h3>The question compass</h3>
+        <svg viewBox="0 0 100 78" style="width:100%" font-family="Space Grotesk" font-weight="700" font-size="3.6" text-anchor="middle">
+          <rect x="1" y="1" width="98" height="76" rx="5" fill="#fff0f6" stroke="#f9a8cf" stroke-width="1"/>
+          <line x1="50" y1="8" x2="50" y2="70" stroke="#f9a8cf" stroke-width=".8"/><line x1="8" y1="39" x2="92" y2="39" stroke="#f9a8cf" stroke-width=".8"/>
+          <text x="50" y="7" fill="#b0124a">MORE</text><text x="50" y="75" fill="#b0124a">LESS</text>
+          <text x="9" y="41" fill="#b0124a" text-anchor="start">PAST</text><text x="91" y="41" fill="#b0124a" text-anchor="end">FUTURE</text>
+          <text x="27" y="19" fill="#121614">Appreciative</text><text x="27" y="23.5" fill="#121614">Interviews</text><text x="27" y="31" fill="#121614">9 Whys</text>
+          <text x="50" y="13" fill="#121614" font-size="3.2" paint-order="stroke" stroke="#fff0f6" stroke-width="1.6">Wicked Questions</text>
+          <text x="73" y="21" fill="#121614">15% Solutions</text><text x="73" y="29" fill="#121614">What, So What,</text><text x="73" y="33.5" fill="#121614">Now What</text>
+          <text x="25" y="60" fill="#121614">Heard, Seen, Respected</text>
+          <text x="50" y="66" fill="#121614" paint-order="stroke" stroke="#fff0f6" stroke-width="1.6">Min Specs</text>
+          <text x="76" y="60" fill="#121614">TRIZ</text>
+        </svg>
+        <p class="note">Ask for a question that points toward the future and toward less, and get TRIZ. <span class="ref">D109</span></p>
+      </div>
+      <div>
+        <h3>The knobs</h3>
+        <div class="tile" style="--c:var(--bd);margin-bottom:2.5mm"><h4>Group size</h4><p>solo · pair · trio · four · larger</p></div>
+        <div class="tile" style="--c:var(--bd);margin-bottom:2.5mm"><h4>Group stability</h4><p>stable, or groups that shuffle</p></div>
+        <div class="tile" style="--c:var(--bd)"><h4>Minutes per person per question</h4><p>tight to spacious, or unbounded. The deck's own unit of time, comparable across group sizes. <span class="ref">D110, D111</span></p></div>
+        <p class="note" style="margin-top:2mm">Everything specific to Liberating Structures (deck, taxonomy, rubric, vocabulary) lives in data, so another community can swap it. <span class="ref">D106</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>05</span></div>
+</section>
+
+<!-- 6 ECONOMY -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">05 · The omni-win economy</div>
+    <h2>A certification pyramid scheme, upside down</h2>
+    <p class="lede">Money follows appreciation and use until people's stated needs are met, and the common pool is one of the recipients. Pay for contribution, never for recruitment. <span class="ref">D168</span></p>
+    <svg viewBox="0 0 180 92" style="width:100%;height:auto;margin-bottom:2mm" font-family="Space Grotesk" font-weight="700" text-anchor="middle">
+      <defs><marker id="a2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="#0b7354"/></marker></defs>
+      <g font-size="4">
+        <rect x="2" y="4" width="44" height="12" rx="3" fill="#a020f0"/><text x="24" y="11.5" fill="#fff">Certificates</text>
+        <rect x="2" y="19" width="44" height="12" rx="3" fill="#a020f0"/><text x="24" y="26.5" fill="#fff">Courses</text>
+        <rect x="2" y="34" width="44" height="12" rx="3" fill="#a020f0"/><text x="24" y="41.5" fill="#fff">White-label licences</text>
+        <rect x="2" y="54" width="44" height="12" rx="3" fill="#12a8dc"/><text x="24" y="61.5" fill="#fff">Levy: paid sessions</text>
+        <rect x="2" y="69" width="44" height="12" rx="3" fill="#12a8dc"/><text x="24" y="76.5" fill="#fff">Levy: hiring</text>
+      </g>
+      <text x="24" y="2.5" font-size="3.2" fill="#5d6b66">COMMONS PRODUCTS · FULL PRICE</text>
+      <text x="24" y="52" font-size="3.2" fill="#5d6b66">OPT-IN BILLING · LEVY ONLY</text>
+      <g stroke="#0b7354" stroke-width=".9" fill="none" marker-end="url(#a2)">
+        <path d="M47,10 C62,10 62,40 72,42"/><path d="M47,25 C60,25 62,42 72,44"/><path d="M47,40 L72,46"/>
+        <path d="M47,60 C60,60 62,50 72,48"/><path d="M47,75 C62,75 62,52 72,50"/>
+      </g>
+      <circle cx="92" cy="46" r="19" fill="#0b7354"/>
+      <text x="92" y="44" font-family="Permanent Marker" font-weight="400" font-size="6.5" fill="#fff">common</text>
+      <text x="92" y="51" font-family="Permanent Marker" font-weight="400" font-size="6.5" fill="#fff">pool</text>
+      <text x="92" y="71" font-size="3.4" fill="#0b7354">3 stewards · 2 of 3 sign</text>
+      <g stroke="#0b7354" stroke-width=".9" fill="none" marker-end="url(#a2)">
+        <path d="M111,40 C122,30 124,22 132,20"/><path d="M111,46 L132,46"/><path d="M111,52 C122,62 124,70 132,72"/>
+      </g>
+      <g font-size="4">
+        <rect x="133" y="13" width="45" height="14" rx="3" fill="#f0335f"/><text x="155.5" y="19" fill="#fff">Flow funding</text><text x="155.5" y="24" font-size="3" fill="#ffe1ea">practitioners who opt in</text>
+        <rect x="133" y="39" width="45" height="14" rx="3" fill="#2fd39a"/><text x="155.5" y="45" fill="#0c1512">Equinox grants</text><text x="155.5" y="50" font-size="3" fill="#0b5c43">stewarding · new spaces</text>
+        <rect x="133" y="65" width="45" height="14" rx="3" fill="#2457d6"/><text x="155.5" y="71" fill="#fff">Protocol upkeep</text><text x="155.5" y="76" font-size="3" fill="#dfe7ff">the pool's survival</text>
+      </g>
+    </svg>
+    <div class="grid2">
+      <div>
+        <h3>The flow, step by step</h3>
+        <ul class="tight">
+          <li><b>Fill first.</b> The pool only fills; nothing goes out until flow funding starts. <span class="ref">D163</span></li>
+          <li><b>Unlock.</b> When the pool covers one season of the survival thresholds people have asked for, the next equinox gathering votes to start. That vote adopts the flow rules; Javeline abstains. <span class="ref">D165, D169</span></li>
+          <li><b>Signals.</b> Appreciation and use, equally weighted, from co-signed sessions only. Everyone gets the same appreciation budget per season. <span class="chip pro">weights: proposal</span> <span class="ref">D80, D183</span></li>
+          <li><b>Thresholds.</b> Each recipient declares survival and thriving, in public, before each equinox. Any member can question one in a Happy Money Story round. <span class="ref">D81, D167</span></li>
+          <li><b>Fill order.</b> Survival first, then thriving. <span class="chip pro">proposal</span> <span class="ref">D83</span></li>
+          <li><b>No overflow in the hatch.</b> Anything above thriving goes to the pool. <span class="ref">D84</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>House rules</h3>
+        <div class="tile" style="--c:var(--pk);margin-bottom:2.5mm"><h4>Never sell the claim</h4><p>Money buys learning, practice and a formal document of an earned record. Never a record that wasn't earned. <span class="ref">D72</span></p></div>
+        <div class="tile" style="--c:var(--pu);margin-bottom:2.5mm"><h4>Pay for use, never headcount</h4><p>Adopting a deck and "learned from" lineage bring recognition and phase, never money. <span class="ref">D168</span></p></div>
+        <div class="tile" style="--c:var(--dg);margin-bottom:2.5mm"><h4>Your fee stays yours</h4><p>A practitioner's own fee is theirs; a session split shares that session's income by Happy Money Story. <span class="ref">D77, D97</span></p></div>
+        <div class="tile" style="--c:var(--bl)"><h4>Sufficient, not large</h4><p>Governance follows stewardship recognised by peers, never earnings. <span class="ref">D86, D87</span></p></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:auto">Euros through the Monerium rail (D98). Grants: twice a year, several signers from several groups, capped per equinox, never to a signer, their group, family or payer (D164, D190). Tokens wait until the pool is large enough (D99).</p>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>06</span></div>
+</section>
+
+<!-- 7 SEASONS & GOVERNANCE -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">06 · Seasons and governance</div>
+    <h2>The game turns at the equinox</h2>
+    <p class="lede">The work happens through the season. Twice a year, at the spring and autumn equinox, the community settles, decides and welcomes. <span class="ref">D80, D164</span></p>
+    <div class="grid2" style="align-items:start">
+      <svg viewBox="0 0 100 100" style="width:100%" font-family="Space Grotesk" font-weight="700" text-anchor="middle">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#2fd39a" stroke-width="7"/>
+        <path d="M50,10 A40,40 0 0,1 50,90" fill="none" stroke="#a020f0" stroke-width="7"/>
+        <circle cx="50" cy="10" r="7" fill="#0b7354"/><text x="50" y="11.5" font-size="3.6" fill="#fff">SPRING</text>
+        <circle cx="50" cy="90" r="7" fill="#0b7354"/><text x="50" y="91.5" font-size="3.6" fill="#fff">AUTUMN</text>
+        <text x="80" y="52" font-size="3.6" fill="#a020f0">season</text>
+        <text x="20" y="52" font-size="3.6" fill="#0b7354">season</text>
+        <text x="50" y="46" font-family="Permanent Marker" font-weight="400" font-size="7" fill="#a020f0">equinox</text>
+        <text x="50" y="54" font-family="Permanent Marker" font-weight="400" font-size="7" fill="#a020f0">gathering</text>
+      </svg>
+      <div>
+        <h3>At every equinox gathering</h3>
+        <ul class="tight">
+          <li>Published thresholds are questioned and settled by Happy Money Story. <span class="ref">D81</span></li>
+          <li>Flows are settled from the season's co-signed records. <span class="ref">D80</span></li>
+          <li>Grants from the pool, shared by Happy Money Story. <span class="ref">D164</span></li>
+          <li>Steward requests are evaluated. <span class="ref">D199</span></li>
+          <li>New communities are welcomed; they join by open invitation. <span class="ref">D136</span></li>
+          <li>The experiment's measures are published; the commons can review it. <span class="ref">D171</span></li>
+          <li>The gaming risks are discussed and evaluated. <span class="ref">D203</span></li>
+          <li>Groups reflect through their network webs: which patterns and people do we want more of? <span class="ref">D198</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid3" style="margin-top:3mm">
+      <div class="tile" style="--c:var(--dg)"><h4>Stewards</h4><p>Anyone may ask to be recognised. Elected unanimously by existing stewards, from different user contexts. Removable by a majority of members who vote. <span class="ref">D199, D159</span></p></div>
+      <div class="tile" style="--c:var(--pu)"><h4>The commons</h4><p>Members vote in their own group; a decision needs a majority of participating groups and is signed by stewards from several groups. Framed by Ostrom and the LS principles. <span class="ref">D166</span></p></div>
+      <div class="tile" style="--c:var(--pk)"><h4>Founder limits</h4><p>Javeline nominates the 3 pilot stewards once; the power ends when they are seated. No standing seat. Abstains on the flow-rules vote. <span class="ref">D199, D35, D169</span></p></div>
+    </div>
+    <h3 style="margin-top:4mm">The hatch</h3>
+    <svg viewBox="0 0 180 26" style="width:100%" font-family="Space Grotesk" font-weight="700">
+      <rect x="2" y="9" width="176" height="8" rx="4" fill="#e6efeb"/>
+      <rect x="2" y="9" width="58" height="8" rx="4" fill="#12a8dc"/><text x="31" y="14.6" font-size="3.6" text-anchor="middle" fill="#fff">pool fills</text>
+      <rect x="62" y="9" width="96" height="8" rx="4" fill="#f0335f"/><text x="110" y="14.6" font-size="3.6" text-anchor="middle" fill="#fff">≥ 13 months of flow funding</text>
+      <circle cx="166" cy="13" r="5" fill="#a020f0"/>
+      <text x="2" y="6" font-size="3.4" fill="#0b7354">PILOT 1 STARTS</text>
+      <text x="62" y="6" font-size="3.4" fill="#f0335f">START VOTE</text>
+      <text x="178" y="6" font-size="3.4" text-anchor="end" fill="#a020f0">PARAMETERS CONVERSATION</text>
+      <text x="90" y="24" font-size="3.2" text-anchor="middle" fill="#5d6b66">hard maximum: 2 years from the start of pilot 1 · leaving and forking are rights (D177, D178)</text>
+    </svg>
+    <p class="note" style="margin-top:auto">Starting values are confirmed by the pilot group at the start of pilot 1, with Javeline abstaining, and can be changed the same way (D170). The pool's keys: the 3 pilot stewards, any 2 of 3 sign (D200).</p>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>07</span></div>
+</section>
+
+<!-- 8 ANTI-CHEAT -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">07 · Anti-cheat</div>
+    <h2>The ring of four, and what stops it</h2>
+    <p class="lede">The cheapest attack: a small circle that co-signs itself. Here is every defence, its status, and the risks we accept in the open.</p>
+    <table>
+      <tr><th style="width:27%">Signal</th><th>Defence</th><th style="width:16%">Status</th></tr>
+      <tr><td><span class="swatch" style="background:var(--pk)"></span>Positive Gossip</td><td>Only distinct, verified members count; one appreciation budget per member per season <span class="ref">D184, D183</span></td><td><span class="chip dec">decided</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--pu)"></span>Certificates</td><td>Show the distinct-witness count; buyers judge <span class="ref">D185</span></td><td><span class="chip dec">decided</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--lg)"></span>Use of entries</td><td>No pay when the author was in the session; once per host per season <span class="ref">D187</span>. Only the host records use <span class="ref">D188</span></td><td><span class="chip dec">decided</span> <span class="chip pro">proposal</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--bl)"></span>Money before the trust wire</td><td>The pool only fills in pilot 1; outside the pilot community, appreciation only <span class="ref">D163, D172</span>. Only announced sessions count <span class="ref">D186</span></td><td><span class="chip dec">decided</span> <span class="chip pro">proposal</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--dg)"></span>Commons votes</td><td>A group counts after a full season with enough co-signed members <span class="ref">D189</span></td><td><span class="chip dec">decided</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--lg)"></span>Grants</td><td>Never to a signer, their group, family or payer <span class="ref">D190</span></td><td><span class="chip dec">decided</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--pk)"></span>Thresholds</td><td>Public and questioned at the equinox <span class="ref">D81</span>; unsettled challenges to the commons <span class="ref">D191</span></td><td><span class="chip dec">decided</span> <span class="chip pro">proposal</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--bd)"></span>New cards</td><td>Hosts from at least two user groups <span class="ref">D192</span></td><td><span class="chip pro">proposal</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--lp)"></span>Wiki and course votes</td><td>Shown at each voter's evidence level <span class="ref">D151</span>; only members with a co-signed record <span class="ref">D193</span></td><td><span class="chip dec">decided</span> <span class="chip pro">proposal</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--pu)"></span>Seals</td><td>Stewards who witnessed much of a record can't seal it <span class="ref">D194</span></td><td><span class="chip pro">proposal</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--bl)"></span>Lineage</td><td>Never pays <span class="ref">D168</span>; trust edges only from counter-signed credentials <span class="ref">D195</span></td><td><span class="chip dec">decided</span> <span class="chip pro">proposal</span></td></tr>
+      <tr><td><span class="swatch" style="background:var(--dg)"></span>Payouts</td><td>Fixed, published inputs, checked by signers before money moves <span class="ref">D197</span>; overflow rules when designed <span class="ref">D196</span></td><td><span class="chip pro">proposal</span></td></tr>
+    </table>
+    <div class="tile" style="--c:var(--pu);margin-top:auto">
+      <h4>Accepted risks: paint on the road <span class="ref">D203</span></h4>
+      <p>A circle can still co-sign itself to a certificate, but the certificate shows how few witnessed it. Collusion inside the pilot can't be seen from the network's shape until the trust wire. Using someone's tip stays a host's claim. One person, one account depends on NAOMS. We discuss and evaluate all of these at every equinox.</p>
+    </div>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>08</span></div>
+</section>
+
+<!-- 9 NETWORK CARDS -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">08 · The network sees itself</div>
+    <h2>Name the web, then make a move</h2>
+    <p class="lede">The network pattern cards label a session's context and a person's position, and every label offers a next move. Descriptive, never paid. <span class="ref">D198</span></p>
+    <div class="grid3" style="gap:4mm;margin-bottom:3mm">
+      <figure style="text-align:center"><img src="bc79681a.jpg" style="width:100%;border-radius:4mm"><figcaption class="note"><b>Birds of a Feather.</b> Move: invite someone from another group</figcaption></figure>
+      <figure style="text-align:center"><img src="89233d24.jpg" style="width:100%;border-radius:4mm"><figcaption class="note"><b>Celebrating Diversity.</b> Move: keep this mix together</figcaption></figure>
+      <figure style="text-align:center"><img src="598234cf.jpg" style="width:100%;border-radius:4mm"><figcaption class="note"><b>Bridging the Gaps.</b> Move: introduce the two groups directly</figcaption></figure>
+    </div>
+    <div class="grid2">
+      <div>
+        <h3>On a profile</h3>
+        <table>
+          <tr><td><b>Bridging the Gaps</b></td><td>links groups that otherwise don't meet</td></tr>
+          <tr><td><b>Flat Hierarchy</b></td><td>many practise with them, not with each other</td></tr>
+          <tr><td><b>The Inner Circle</b></td><td>part of a tight core</td></tr>
+          <tr><td><b>Periphery</b></td><td>linked through one or two people</td></tr>
+          <tr><td><b>New Kids on the Block</b></td><td>practises alone or once so far</td></tr>
+          <tr><td><b>Gatekeeper</b></td><td>the only link between two sides</td></tr>
+        </table>
+        <p class="note" style="margin-top:1.5mm">Opt in to being shown. Before the trust wire, pilot community only. <span class="chip pro">move wording: proposal</span></p>
+      </div>
+      <div>
+        <h3>The public dashboard <span class="chip pro">proposal</span></h3>
+        <p style="font-size:8.8pt">The community-wide view falls out of the records. No more user-group lists maintained by hand. <span class="ref">D100</span></p>
+        <ul class="tight">
+          <li>Time to record · Gossip completion</li>
+          <li>Witness diversity · Certification funnel</li>
+          <li>Repeat sessions · Data Wash uptake</li>
+          <li>Journal activity · Revenue and flow</li>
+        </ul>
+        <p class="note" style="margin-top:1.5mm">Until the trust wire ships, anything crossing communities shows per community, labelled "self-reported, not yet cross-verified", never as a flat zero. <span class="ref">D173, D102</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>09</span></div>
+</section>
+
+<!-- 10 ROADMAP -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">09 · Levels and roadmap</div>
+    <h2>Two pilots, then the world</h2>
+    <p class="lede">The priorities say what we protect when build time runs short, not the build order. Certification first, then the commons and its courses, then the marketplace. <span class="ref">D174, D158</span></p>
+    <svg viewBox="0 0 180 58" style="width:100%;height:auto;margin-bottom:3mm" font-family="Space Grotesk" font-weight="700" text-anchor="middle">
+      <line x1="6" y1="28" x2="174" y2="28" stroke="#0b7354" stroke-width="1.2"/>
+      <g font-size="3.4">
+        <circle cx="12" cy="28" r="6" fill="#2457d6"/><text x="12" y="29.2" fill="#fff">M1</text><text x="13" y="41" fill="#121614" font-size="3">Play + record</text><text x="13" y="45" fill="#5d6b66" font-size="3">deck · archive</text><text x="13" y="49" fill="#5d6b66" font-size="3">session package</text>
+        <circle cx="34" cy="28" r="6" fill="#12a8dc"/><text x="34" y="29.2" fill="#fff">M2</text><text x="34" y="41" fill="#121614">Privacy</text><text x="34" y="45" fill="#5d6b66">Data Wash</text>
+        <circle cx="56" cy="28" r="6" fill="#2fd39a"/><text x="56" y="29.2" fill="#0c1512">M3</text><text x="56" y="41" fill="#121614">Ladder +</text><text x="56" y="45" fill="#5d6b66">certificates</text>
+        <rect x="68" y="20" width="24" height="16" rx="4" fill="#f0335f"/><text x="80" y="27" fill="#fff">PILOT 1</text><text x="80" y="31.5" font-size="2.8" fill="#ffe1ea">real money</text>
+        <circle cx="104" cy="28" r="6" fill="#a020f0"/><text x="104" y="29.2" fill="#fff">M4</text><text x="104" y="41" fill="#121614">The commons</text><text x="104" y="45" fill="#5d6b66">wiki · course · seal</text>
+        <rect x="116" y="20" width="24" height="16" rx="4" fill="#f0335f"/><text x="128" y="27" fill="#fff">PILOT 2</text><text x="128" y="31.5" font-size="2.8" fill="#ffe1ea">wiki + course</text>
+        <circle cx="152" cy="28" r="6" fill="#0b7354"/><text x="152" y="29.2" fill="#fff">M5</text><text x="150" y="41" fill="#121614">A living</text><text x="150" y="45" fill="#121614">protocol</text><text x="150" y="49" fill="#5d6b66">billing · flow</text>
+        <circle cx="170" cy="28" r="4" fill="#a020f0"/><text x="176" y="17" fill="#121614" text-anchor="end">Parameters</text><text x="176" y="21" fill="#5d6b66" text-anchor="end">conversation</text>
+      </g>
+      <text x="90" y="9" font-size="3.4" fill="#2457d6">M0 · TRUST WIRE (Mujo) · before a second community's seals count, and before the hatch closes</text>
+      <path d="M8,12 L172,12" stroke="#2457d6" stroke-width=".8" stroke-dasharray="2 1.5"/>
+    </svg>
+    <table>
+      <tr><th style="width:10%">Priority</th><th style="width:30%">Goal</th><th>In pilot 1</th><th>Pilot 2</th><th>Later, when…</th></tr>
+      <tr><td class="big" style="color:var(--dg)">0</td><td><b>My deck first, my archive in</b></td><td>Home deck first; archive as claims; review queue</td><td>Imports into the wiki</td><td>—</td></tr>
+      <tr><td class="big" style="color:var(--lg)">1</td><td><b>Certified practice</b></td><td>Recording; ladder; certificates; stewards; the pool</td><td>Optional seal; OGD Eval</td><td>Camera and voice: recording proves too slow</td></tr>
+      <tr><td class="big" style="color:var(--pu)">2</td><td><b>Knowledge commons + automatic course</b></td><td>Data Wash; session package</td><td>Wiki; votes; course; cards</td><td>Curated courses and versions: the wiki has volume</td></tr>
+      <tr><td class="big" style="color:var(--pk)">3</td><td><b>Marketplace</b></td><td>Certificates are the one paid path</td><td>—</td><td>Seats, hiring, billing: certification is trusted</td></tr>
+      <tr><td class="big" style="color:var(--bl)">4</td><td><b>The network sees itself</b></td><td>A plain list of sessions and groups</td><td>—</td><td>Dashboard: pilot 2's wiki exists</td></tr>
+      <tr><td class="big" style="color:var(--bd)">5</td><td><b>White-label protocol</b></td><td>Everything LS-specific as data</td><td>—</td><td>Another community asks to run it</td></tr>
+    </table>
+    <p class="note" style="margin-top:auto">Pilot 1 runs in LS Go Online and the Wise Crowds Design Call, counted as one community; the certificate says so (D136, D157). Flow funding starts when the pool and an equinox vote allow it (D165). Full feature list: "The minimum: two pilots" in the response.</p>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>10</span></div>
+</section>
+
+<!-- 11 RULES OF THE GAME -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">10 · Rules of the game</div>
+    <h2>Min specs: five musts, six must-nots</h2>
+    <p class="lede">Run through Min Specs, the whole design reduces to these. Anything not on these lists is negotiable. <span class="ref">D123</span></p>
+    <div class="grid2">
+      <div>
+        <h3>Musts</h3>
+        <table>
+          <tr><th>Must</th><th>Pilot 1</th><th>Pilot 2</th></tr>
+          <tr><td><b>1</b> · Recorded and co-signed by gossip; no one types a record</td><td><span class="chip dec">met</span></td><td><span class="chip dec">met</span></td></tr>
+          <tr><td><b>2</b> · Credentials become trust edges</td><td><span class="chip opn">waits</span></td><td><span class="chip opn">waits</span></td></tr>
+          <tr><td><b>3</b> · Phase computed from records</td><td><span class="chip dec">met</span></td><td><span class="chip dec">met</span></td></tr>
+          <tr><td><s><b>4</b> · A user group seals</s></td><td colspan="2" class="note">dropped: the seal is optional (D127)</td></tr>
+          <tr><td><b>5</b> · Certificates through the app, every flow visible</td><td><span class="chip dec">met*</span></td><td><span class="chip dec">met</span></td></tr>
+          <tr><td><b>6</b> · Contributors choose, votes sort, a course writes itself</td><td><span class="chip asm">partly</span></td><td><span class="chip dec">met</span></td></tr>
+        </table>
+        <p class="note" style="margin-top:1.5mm">Must 2 waits under an exception decided 2026-10-06: one pilot community, no cross-community numbers (D125, D157). Must 6 completes in pilot 2 by the two-pilot split (D158). *Only if the euro rail is on and the refund rule holds.</p>
+      </div>
+      <div>
+        <h3>Must-nots</h3>
+        <div class="tile" style="--c:var(--pk);margin-bottom:2mm"><h4>Never sell the claim</h4></div>
+        <div class="tile" style="--c:var(--pu);margin-bottom:2mm"><h4>Never pay for recruiting</h4></div>
+        <div class="tile" style="--c:var(--dg);margin-bottom:2mm"><h4>No share outside what the commons decides</h4></div>
+        <div class="tile" style="--c:var(--bl);margin-bottom:2mm"><h4>Never show a number the trust wire can't support</h4></div>
+        <div class="tile" style="--c:var(--bd);margin-bottom:2mm"><h4>Never hardcode Liberating Structures</h4></div>
+        <div class="tile" style="--c:var(--lg)"><h4>No cross-community seal before the trust wire</h4></div>
+        <p class="note" style="margin-top:1.5mm"><span class="ref">D130, D157</span></p>
+      </div>
+    </div>
+    <div class="tile" style="--c:var(--frame);margin-top:auto">
+      <h4>Licence</h4>
+      <p>The Liberating Structures material, Javeline's videos and Javeline's deck are under CC BY-SA 4.0: no non-commercial term, ShareAlike carries to the wiki and courses. People pay for curation, live updates and certification, not exclusive content. New cards are marked as community riffs, distinct from the core. <span class="ref">D61–D64</span> <span class="chip asm">Fieldbook coverage: assumption</span></p>
+    </div>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>11</span></div>
+</section>
+
+<!-- 12 OPEN QUESTS -->
+<section class="page">
+  <div class="card full">
+    <div class="kicker">11 · Open quests</div>
+    <h2>What stands between us and pilot&nbsp;1</h2>
+    <p class="lede">Every open question has an owner. These are the ones pilot 1 waits on; the full list is in the response's "Still open" and "Questions for NAOMS".</p>
+    <div class="grid2">
+      <div class="tile" style="--c:var(--bd)"><h4>Mujo · NAOMS</h4>
+        <ul class="tight">
+          <li>Switch on the Monerium euro rail; can it run 2-of-3 and pay refunds?</li>
+          <li>Check the refund rule against EU consumer law</li>
+          <li>Verify one person per account</li>
+          <li>The certificate's credential format</li>
+          <li>Size Data Wash; test what draft 3 says exists</li>
+        </ul>
+      </div>
+      <div class="tile" style="--c:var(--pk)"><h4>Javeline and Mujo together</h4>
+        <ul class="tight">
+          <li>Funding the build before revenue. <span class="chip pro">proposal</span> request ecosystem funding via Kevin or Maurits (D206)</li>
+          <li>The lawful basis for transcribing old recordings that show other people</li>
+        </ul>
+      </div>
+      <div class="tile" style="--c:var(--dg)"><h4>The pilot group</h4>
+        <ul class="tight"><li>Confirm the starting values, including the refund rule and the course price (D170)</li></ul>
+      </div>
+      <div class="tile" style="--c:var(--pu)"><h4>Javeline</h4>
+        <ul class="tight"><li>Trademark and domain check on the name, before the first certificate is sold (D204)</li></ul>
+      </div>
+    </div>
+    <h3 style="margin-top:5mm">Next: before flow funding starts</h3>
+    <p style="font-size:8.8pt">How the records carry appreciation (Mujo), who signs payouts, tax on payouts, and nine anti-cheat proposals waiting on Javeline (D186, D188, D191–D197). The commons adopts the flow rules in the start vote (D169).</p>
+    <div style="margin-top:auto;text-align:center">
+      <div class="big" style="font-size:30pt;color:var(--pu)">capacity made visible,</div>
+      <div class="big" style="font-size:30pt;color:var(--frame)">owned by the people who have it,</div>
+      <div class="big" style="font-size:30pt;color:var(--pk)">trusted because a community stood behind it.</div>
+      <p class="note" style="margin-top:3mm">Draft 3's closing line, and the whole argument in one sentence.</p>
+    </div>
+  </div>
+  <div class="foot"><span><b>Certified Practitioner</b> · GDD v2</span><span>12</span></div>
+</section>
+
+</body>
+</html>
