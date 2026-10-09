@@ -52,6 +52,9 @@ Step 6, 2026-10-07. This is one ledger of every question raised in the folder, w
 | L53 | Does the LS Commons agree to sign certificates (D201)? | Presumed yes until it says otherwise (ASSUMPTION). If not, the user groups sign alone (DECIDED fallback, D201) | Javeline, with the LS Commons | The LS Commons' agreement, and who signs for it | No: the fallback lets pilot 1 run either way |
 | L54 | ~~Is Javeline's own deck released under CC BY-SA 4.0?~~ **DECIDED 2026-10-07 (Javeline):** re-released under CC BY-SA 4.0; the app helps establish it (D64) | Decided | Javeline | — | No longer blocks |
 | L55 | ~~Who are "the pilot user group's stewards" in D33?~~ **DECIDED 2026-10-07 (Javeline):** the 3 pilot stewards (D199) | Decided | Javeline | — | No longer blocks |
+| L56 | Does a player named in a record who does not attest still reach Birth from that session, or is attesting what adds it (D208)? | Open. Claude's reading: attesting is what adds it, which makes it the incentive (ASSUMPTION) | Javeline | A yes or no | No |
+| L57 | Do guests who rate the experience (D119) also get Birth-level experience from attesting (D208)? | Open. Claude's reading: yes, in their own journal; it carries no phase or money (ASSUMPTION) | Javeline | A yes or no | No |
+| L58 | "Conscious Naive" or "Conscious Incompetence" for the Cautious Optimist phase (C20)? | Open | Javeline | Which label the deck uses | No |
 | L50 | ~~Steward election: unanimous or majority?~~ **DECIDED 2026-10-07 (Javeline):** unanimous decision of existing stewards (D199; C18 settled) | Decided | Javeline | — | No longer blocks |
 | L51 | ~~Does each steward represent a different user group?~~ **DECIDED 2026-10-07 (Javeline):** stewards come from different user contexts (D199; C19 settled). Claude's reading, that a group can have several stewards from different contexts, is an ASSUMPTION | Decided | Javeline | — | No longer blocks |
 | L52 | ~~Who selects the 3 pilot stewards?~~ **DECIDED 2026-10-07 (Javeline):** Javeline selects and nominates them at rollout; the power is used once, ends when they are seated, and they are removable under D159 (D199) | Decided | Javeline | — | No longer blocks |
@@ -190,11 +193,11 @@ So that nothing falls through, every question from the sources is listed here wi
 
 ## Summary
 
-**42 open questions** (L54 and L55 added and decided in step 9; L1, L6, L7, L11, L12, L13, L16, L17, L50, L51 and L52 were decided on 2026-10-07, with L17's check still to do; L50–L53 were added the same day from Javeline's answers, D199 and D201). Every one has an owner:
+**45 open questions** (L56–L58 added 2026-10-09 from D208; L54 and L55 added and decided in step 9; L1, L6, L7, L11, L12, L13, L16, L17, L50, L51 and L52 were decided on 2026-10-07, with L17's check still to do; L50–L53 were added the same day from Javeline's answers, D199 and D201). Every one has an owner:
 
 | Owner | Open questions |
 |---|---|
-| Javeline | 20 |
+| Javeline | 23 |
 | Mujo | 10 |
 | Javeline and Mujo together | 3 (L9, L10, L24) |
 | The commons, the community or the pilot group | 9 |

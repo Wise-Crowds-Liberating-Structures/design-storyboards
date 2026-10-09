@@ -18,8 +18,8 @@ Written 2026-10-08 for any agent asked to continue or extend this project. Read 
 The job so far has been to turn Javeline's response to NAOMS into a consistent document that another team can build from. Steps 1–9 are done.
 
 - **`08-response-v2.md` is final and ready to send to NAOMS.** It has passed the step 9 checklist.
-- **All conflicts are settled.** C1–C19 in 02-decisions.md and K1–K22 in 03-conflicts.md.
-- **42 questions are still open, each with an owner** (06-questions.md and "Still open" in 08). Nine block pilot 1, plus Javeline's trademark check (D204). They break down as follows:
+- **All conflicts are settled.** C1–C19 in 02-decisions.md (C20, a label question, is open) and K1–K22 in 03-conflicts.md.
+- **45 questions are still open, each with an owner** (06-questions.md and "Still open" in 08). Nine block pilot 1, plus Javeline's trademark check (D204). They break down as follows:
   - **Mujo:** the euro rail (Monerium), checking the refund rule against EU consumer law, one person per account, the credential format, Data Wash sizing, and testing.
   - **Javeline and Mujo together:** funding the build (D206 PROPOSAL: ecosystem funding via Kevin or Maurits), and the lawful basis for transcribing old recordings.
   - **The pilot group:** confirming the starting values (D170).
@@ -28,7 +28,7 @@ The job so far has been to turn Javeline's response to NAOMS into a consistent d
 
 ## 3. Standing rules (from Javeline, 2026-09-30). Follow them in every step.
 
-1. **One source of truth.** Every decision, number, price, threshold and duration lives in ONE table: `02-decisions.md` (and its condensed copy at the top of 08). Everything else refers to rows (D1…D207) and never repeats a value.
+1. **One source of truth.** Every decision, number, price, threshold and duration lives in ONE table: `02-decisions.md` (and its condensed copy at the top of 08). Everything else refers to rows (D1…D208) and never repeats a value.
 2. **Label every sentence that is not settled.** The labels are:
    - DECIDED (with who and when);
    - PROPOSAL (with who proposed it);
@@ -67,13 +67,13 @@ Javeline sends steps one message at a time.
 
 | Prefix | Meaning | Lives in |
 | --- | --- | --- |
-| D1–D207 | Decisions and numbers (gaps are folded or replaced rows) | 02-decisions.md |
-| C1–C19 | Conflicts within the decisions table, all settled | 02-decisions.md |
+| D1–D208 | Decisions and numbers (gaps are folded or replaced rows) | 02-decisions.md |
+| C1–C20 | Conflicts within the decisions table (C20 open) | 02-decisions.md |
 | K1–K22 | Consistency conflicts in the response | 03-conflicts.md |
 | F1–F26 | Fixes from the power-and-money check | 04-power-and-money.md |
 | Q1–Q51 | Decision queue put to Javeline | 04a-decision-queue.md |
 | G1–G15 | Gaming attacks and fixes | 05-gaming.md |
-| L1–L55 | Question ledger (open and decided) | 06-questions.md |
+| L1–L58 | Question ledger (open and decided) | 06-questions.md |
 | P0.1–P5.3 | Features by priority | 07-scope.md |
 | L123 etc. | Line numbers in the original response file | (cited in 01–05) |
 

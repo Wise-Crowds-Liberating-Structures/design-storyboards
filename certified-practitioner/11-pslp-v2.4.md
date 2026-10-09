@@ -133,6 +133,8 @@ Some evidence does not count toward co-signature:
 
 Records stay open for late signatures for a fixed window (D120).
 
+**Why attest.** Attesting is itself learning. A player who attests a session, by adding their RoTI and Positive Gossip, adds the session's patterns to their own Learning Journal at the Birth stage: an instance of being led through a pattern, developing conscious incompetence (D208). Birth does not count toward patterns in use, so attesting adds nothing to the phase, the certificate or payment; the incentive is the learning itself, made visible.
+
 **First-class events.** All structured learning interactions qualify as social learning events, but a subset is first-class: events in which participants practice the community's own method. Training and practice in the Liberating Structures themselves is the paradigmatic case, because LS are acquired through direct experience, practice and peer debriefing rather than instruction alone. Such records are first-class in two ways:
 
 1. **They are the strongest evidence of practitioner capacity.** A participant who has structured, run and debriefed a practice session has demonstrated the very capacity the community values above others: the responsible organization of a group's time, attention and energy.
@@ -505,6 +507,7 @@ Distilled from the "Press Start: Organizational Game Design" deck (Papa Pita, 20
 
 **v2.4 (2026-10-08).** Aligned to the decisions through D207, after the consistency check in 10-pslp-2.3-check.md:
 
+- **§3.2:** attesting adds Birth-stage experience to the attester's own journal (D208, decided 2026-10-09).
 - **New §3.4.1:** how pilot 1 initializes the Learning Journal (D207, PROPOSAL).
 - **New §3.4.2–§3.4.4:** how the journal bootstraps the online course; outputs becoming inputs, as in a string; and how that capitalizes the commons, read through Ostrom's principles (mapping: PROPOSAL).
 - **New §3.9:** money and governance in the pilots: the pool, flow funding, the commons, the equinox, founder limits, gaming defences, and the two pilots.

@@ -94,6 +94,7 @@ The single source of truth for this document. **Status** is DECIDED unless the r
 | D192 | A new card is "in broad use" only if its hosts come from at least 2 user groups | 2 user groups | PROPOSAL |
 | D28 | Ecocycle stage per pattern, per person, computed from records | Gestation · Birth (led through it) · Maturity (hosted others in it) · Creative Destruction (enabled someone else to host it) | DECIDED |
 | D29 | Patterns in use = patterns at Maturity or beyond | — | DECIDED |
+| D208 | Attesting a session (RoTI and Positive Gossip) adds Birth-stage experience to the attester's own journal, developing conscious incompetence; it adds nothing to the phase, certificate or payment | — | DECIDED (2026-10-09) |
 | D30 | Phase is computed per evidence level, side by side; the certificate's headline uses the co-signed phase | A session is co-signed when at least 3 players send Positive Gossip | DECIDED |
 | D179 | The rubric and its thresholds change only by the commons, at an equinox, going forward; each certificate shows its rubric version | — | DECIDED |
 | | **Certificates and seals** | | |
