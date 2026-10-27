@@ -133,7 +133,7 @@ Some evidence does not count toward co-signature:
 
 Records stay open for late signatures for a fixed window (D120).
 
-**Why attest.** Attesting is itself learning. A player who attests a session, by adding their RoTI and Positive Gossip, adds the session's patterns to their own Learning Journal at the Birth stage: an instance of being led through a pattern, developing conscious incompetence (D208). Birth does not count toward patterns in use, so attesting adds nothing to the phase, the certificate or payment; the incentive is the learning itself, made visible.
+**Why attest.** Attesting is itself learning. A player who attests a session, by adding their RoTI and Positive Gossip, adds the session's patterns to their own Learning Journal at the Birth stage: an instance of being led through a pattern, developing conscious incompetence (D208). A player who does not attest gets no Birth from that session, and guests who rate the experience get it in their own journal too. Birth does not count toward patterns in use, so attesting adds nothing to the phase, the certificate or payment; the incentive is the learning itself, made visible.
 
 **First-class events.** All structured learning interactions qualify as social learning events, but a subset is first-class: events in which participants practice the community's own method. Training and practice in the Liberating Structures themselves is the paradigmatic case, because LS are acquired through direct experience, practice and peer debriefing rather than instruction alone. Such records are first-class in two ways:
 
